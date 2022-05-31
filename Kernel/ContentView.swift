@@ -8,9 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    @ObservedObject var manager = AppManager()
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            TabView {
+                HomePage()
+                    .environmentObject(manager)
+                    .tabItem {
+                        Label("Movies", systemImage: "pano.fill")
+                    }
+            
+                
+                TVPage()
+                    .environmentObject(manager)
+                    .tabItem {
+                        Label("Series", systemImage: "tv.fill")
+                    }
+                
+                
+                 Text("HEY")
+                     .tabItem {
+                         Label("Search", systemImage: "magnifyingglass")
+                     }
+              
+                
+                ProfilePage()
+                    .environmentObject(manager)
+                    .tabItem {
+                        Label("Profile", systemImage: "person.crop.circle")
+                    }
+            }
+            .accentColor(.orange)
+        }
     }
 }
 
